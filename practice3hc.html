@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
   <style>
-    /* Default Light Theme Variables */
     :root {
       --header-bg: #4CAF50;
       --sidebar-bg: #f2f2f2;
@@ -15,7 +14,6 @@
       --link-color: blue;
     }
 
-    /* Dark Theme Overrides */
     .dark-mode {
       --header-bg: #222;
       --sidebar-bg: #333;
@@ -33,6 +31,12 @@
 
     body {
       font-family: Arial, sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    .container {
       display: grid;
       grid-template-areas:
         "header header"
@@ -41,8 +45,6 @@
       grid-template-columns: 200px 1fr;
       grid-template-rows: 60px 1fr 40px;
       height: 100vh;
-      background-color: var(--main-bg);
-      color: var(--text-color);
     }
 
     header {
@@ -97,32 +99,18 @@
       font-size: 14px;
     }
 
-    /* Theme Switch Checkbox */
-    #theme-switch {
-      display: none;
-    }
-
-    #theme-switch:checked ~ .container {
-      /* Add dark mode class when checked */
-      --header-bg: #111;
-      --sidebar-bg: #222;
-      --main-bg: #000;
-      --footer-bg: #000;
-      --text-color: #fff;
-      --link-color: violet;
+    #theme-toggle {
+      margin-left: 5px;
     }
   </style>
 </head>
-<body>
-  <!-- Theme Switch Checkbox -->
-  <input type="checkbox" id="theme-switch" />
-  
+<body class="">
   <div class="container">
     <header>
       <h2>Admin Dashboard</h2>
-      <label class="theme-toggle" for="theme-switch">
-        <input type="checkbox" id="toggle-checkbox" onclick="document.body.classList.toggle('dark-mode')" />
+      <label class="theme-toggle">
         Dark Mode
+        <input type="checkbox" id="theme-toggle" onclick="document.body.classList.toggle('dark-mode')" />
       </label>
     </header>
 
