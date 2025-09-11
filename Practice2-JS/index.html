@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Product Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .filter-controls {
+            margin-bottom: 20px;
+        }
+
+        .filter-controls label,
+        .filter-controls select {
+            font-size: 16px;
+        }
+
+        .filter-controls select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .product-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .product-item.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Product List</h1>
+        <div class="filter-controls">
+            <label for="category-filter">Filter by Category:</label>
+            <select id="category-filter">
+                <option value="all">All</option>
+                <option value="clothing">Clothing</option>
+                <option value="electronics">Electronics</option>
+                <option value="books">Books</option>
+            </select>
+        </div>
+        <div id="product-list" class="product-list">
+            <div class="product-item" data-category="clothing">T-Shirt</div>
+            <div class="product-item" data-category="clothing">Jeans</div>
+            <div class="product-item" data-category="electronics">Headphones</div>
+            <div class="product-item" data-category="electronics">Smartphone</div>
+            <div class="product-item" data-category="books">Novel</div>
+            <div class="product-item" data-category="books">Cookbook</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterDropdown = document.getElementById('category-filter');
+            const productItems = document.querySelectorAll('.product-item');
+
+            filterDropdown.addEventListener('change', filterProducts);
+
+            function filterProducts() {
+                const selectedCategory = filterDropdown.value;
+
+                productItems.forEach(item => {
+                    const productCategory = item.getAttribute('data-category');
+
+                    if (selectedCategory === 'all' || productCategory === selectedCategory) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
