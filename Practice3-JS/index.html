@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Drawing Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #drawing-area {
+            border: 2px solid #333;
+            background-color: #ffffff;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>SVG Drawing Tool</h1>
+        <svg id="drawing-area" width="800" height="600"></svg>
+    </div>
+
+    <script>
+        const drawingArea = document.getElementById('drawing-area');
+        let isDrawing = false;
+        let lastPoint = { x: 0, y: 0 };
+
+        function getMousePosition(event) {
+            const rect = drawingArea.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        }
+
+        function onMouseDown(event) {
+            isDrawing = true;
+            lastPoint = getMousePosition(event);
+        }
+
+        function onMouseMove(event) {
+            if (!isDrawing) return;
+
+            const currentPoint = getMousePosition(event);
+
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', lastPoint.x);
+            line.setAttribute('y1', lastPoint.y);
+            line.setAttribute('x2', currentPoint.x);
+            line.setAttribute('y2', currentPoint.y);
+            line.setAttribute('stroke', 'blue');
+            line.setAttribute('stroke-width', '4');
+            line.setAttribute('stroke-linecap', 'round');
+
+            drawingArea.appendChild(line);
+
+            lastPoint = currentPoint;
+        }
+
+        function onMouseUp() {
+            isDrawing = false;
+        }
+
+        drawingArea.addEventListener('mousedown', onMouseDown);
+        drawingArea.addEventListener('mousemove', onMouseMove);
+        drawingArea.addEventListener('mouseup', onMouseUp);
+        drawingArea.addEventListener('mouseleave', onMouseUp); // Stop drawing if mouse leaves the area
+    </script>
+</body>
+</html>
