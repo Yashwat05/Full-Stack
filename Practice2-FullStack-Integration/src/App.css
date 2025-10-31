@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #f5f5f5;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: white;
+  border: 3px solid black;
+}
+
+.main-title {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Products Section */
+.products-section {
+  margin-bottom: 60px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 30px 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.product-price {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.add-to-cart-btn {
+  padding: 8px 16px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Shopping Cart Section */
+.shopping-cart {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cart-items {
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px 0;
+}
+
+.cart-item-name {
+  flex: 1;
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.quantity-input {
+  width: 60px;
+  padding: 6px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.remove-btn {
+  padding: 6px 14px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.remove-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.empty-cart {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cart-item {
+    flex-wrap: wrap;
+  }
+}
